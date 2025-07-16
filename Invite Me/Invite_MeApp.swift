@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import FirebaseCore
 
 //@main
 //struct Invite_MeApp: App {
@@ -39,10 +40,31 @@ struct Invite_MeApp: App {
 
   var body: some Scene {
     WindowGroup {
-      NavigationView {
-        ContentView()
-      }
-      .modelContainer(for: Event.self)
+//      NavigationView {
+//        ContentView()
+//      }
+//      .modelContainer(for: Event.self)
+        
+        NavigationStack {
+          AuthenticatedView {
+            Image(systemName: "number.circle.fill")
+              .resizable()
+              .frame(width: 100 , height: 100)
+              .foregroundColor(Color(.systemPink))
+              .aspectRatio(contentMode: .fit)
+              .clipShape(Circle())
+              .clipped()
+              .padding(4)
+              .overlay(Circle().stroke(Color.black, lineWidth: 2))
+            Text("Welcome to Favourites!")
+              .font(.title)
+            Text("You need to be logged in to use this app.")
+          } content: {
+            ContentView()
+            Spacer()
+          }
+        }
+        
     }
   }
 }

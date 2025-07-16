@@ -7,13 +7,13 @@
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleURLName</key>
-			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.988889617604-saeajctr38tf0octhavnver8fgb02shh</string>
+				<string>com.googleusercontent.apps.988889617604-dcdon3tdpre0c93t4ds79n7rs4poo5jb</string>
 			</array>
 		</dict>
 	</array>
+	<key>GIDClientID</key>
+	<string>988889617604-dcdon3tdpre0c93t4ds79n7rs4poo5jb.apps.googleusercontent.com</string>
 </dict>
 </plist>
