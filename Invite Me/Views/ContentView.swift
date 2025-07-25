@@ -9,10 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var showingAddEvent = false
+    @StateObject private var eventListViewModel = EventListViewModel()
     
     var body: some View {
         NavigationView {
-            EventListView()
+            EventListView(viewModel: eventListViewModel)
                 .navigationTitle("Invite Me")
                 .navigationBarTitleDisplayMode(.large)
                 .toolbar {
@@ -33,5 +34,4 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .modelContainer(for: Event.self, inMemory: true)
 }

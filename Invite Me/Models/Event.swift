@@ -6,10 +6,10 @@
 //
 
 import Foundation
-import SwiftData
+import FirebaseFirestore
 
-@Model
-class Event {
+struct Event: Codable, Identifiable {
+    @DocumentID var id: String?
     var title: String
     var date: Date
     var startTime: Date
@@ -20,7 +20,8 @@ class Event {
     var includeLocationLink: Bool
     var createdAt: Date
     
-    init(title: String, date: Date, startTime: Date, endTime: Date? = nil, venue: String, note: String, maxParticipants: Int? = nil, includeLocationLink: Bool = false) {
+    init(id: String? = nil, title: String, date: Date, startTime: Date, endTime: Date? = nil, venue: String, note: String, maxParticipants: Int? = nil, includeLocationLink: Bool = false) {
+        self.id = id
         self.title = title
         self.date = date
         self.startTime = startTime

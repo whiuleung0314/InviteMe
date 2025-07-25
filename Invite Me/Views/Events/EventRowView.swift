@@ -1,49 +1,4 @@
-//
-//  EventListView.swift
-//  Invite Me
-//
-//  Created by Hiu Leung Wong on 13-07-2025.
-//
-
 import SwiftUI
-import SwiftData
-
-struct EventListView: View {
-    @Query(sort: \Event.date) private var events: [Event]
-    @Environment(\.modelContext) private var modelContext
-    
-    var body: some View {
-        List {
-            if events.isEmpty {
-                ContentUnavailableView(
-                    "No Events",
-                    systemImage: "calendar.badge.plus",
-                    description: Text("Tap the + button to create your first event")
-                )
-            } else {
-                ForEach(events) { event in
-                    NavigationLink(destination: EventDetailView(event: event)) {
-                        EventRowView(event: event)
-                    }
-                    .buttonStyle(PlainButtonStyle())
-                }
-                .onDelete(perform: deleteEvents)
-            }
-        }
-    }
-    
-    private func deleteEvents(offsets: IndexSet) {
-        for index in offsets {
-            modelContext.delete(events[index])
-        }
-        
-        do {
-            try modelContext.save()
-        } catch {
-            print("Error deleting event: \(error)")
-        }
-    }
-}
 
 struct EventRowView: View {
     let event: Event
@@ -121,6 +76,15 @@ struct EventRowView: View {
 }
 
 #Preview {
-    EventListView()
-        .modelContainer(for: Event.self, inMemory: true)
-} 
+    let sampleEvent = Event(
+        title: "Sample Event",
+        date: Date(),
+        startTime: Date(),
+        endTime: Date().addingTimeInterval(3600),
+        venue: "Sample Venue",
+        note: "This is a sample event for preview",
+        includeLocationLink: true
+    )
+    
+    return EventRowView(event: sampleEvent)
+}

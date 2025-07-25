@@ -43,11 +43,18 @@ struct LoginView: View {
 
   private func signInWithGoogle() {
     Task {
-      if await viewModel.signInWithGoogle() == true {
-        dismiss()
-      }
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let window = windowScene.windows.first,
+              let rootViewController = window.rootViewController else {
+            print("There is no root view controller!")
+            return
+        }
+
+        if await viewModel.signInWithGoogle(presenting: rootViewController) == true {
+            dismiss()
+        }
     }
-  }
+}
 
   var body: some View {
     VStack {
